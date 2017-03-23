@@ -1,0 +1,79 @@
+---
+# install core stuff
+#
+#
+
+- name: install items from pacman
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  become_method: sudo
+  with_items:
+    - openssh
+    - sshpass
+    - python
+    - linux-headers
+    - networkmanager
+    - i3
+    - dmenu
+    - git
+    - vim
+    - qutebrowser
+    - alsa-utils
+    - xfce4-terminal
+    - xterm
+    - xorg-server
+    - xorg-xinit
+    - xorg-server-utils
+    - mesa 
+    - xf86-video-intel 
+    - lib32-intel-dri 
+    - lib32-mesa 
+    - lib32-libgl
+    - ranger 
+    - docker 
+    - vagrant 
+    - ansible 
+    - virtualbox-host-modules-arch 
+    - virtualbox 
+    - tmux 
+    - sudo 
+    - qt5-webengine
+
+- name: set .xinitrc
+  shell: echo "setxkbmap gb && exec i3" > /home/sean/.xinitrc
+  args:
+    creates: /home/sean/.xinitrc
+
+- name: get vimrc
+  get_url:
+    url: http://chicken.ninja/scripts/vimrc
+    dest: /home/sean/.vimrc
+
+- name: ensure i3 directory exists
+  file:
+    path: /home/sean/.config/i3
+    state: directory
+    mode: 0755
+
+- name: get i3 config
+  get_url:
+    url: http://chicken.ninja/scripts/i3config
+    dest: /home/sean/.config/i3/config
+
+- name: ensure xfce4 directory exists
+  file:
+    path: /home/sean/.config/xfce4/terminal
+    state: directory
+    mode: 0755
+
+- name: get i3 config
+  get_url:
+    url: http://chicken.ninja/scripts/terminalrc
+    dest: /home/sean/.config/xfce4/terminal/terminalrc
+
+- name: clone chicken ninja repo
+  git:
+    repo: https://github.com/chickenninja/chickenninja.github.io.git 
+    dest: /home/sean/chickenninja

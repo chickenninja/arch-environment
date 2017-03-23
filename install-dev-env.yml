@@ -1,0 +1,8 @@
+---
+- name: Install a full environment on a local arch installation
+  hosts: local
+  remote_user: sean
+
+  
+  roles:
+    - core
