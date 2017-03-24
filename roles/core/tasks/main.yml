@@ -80,11 +80,6 @@
     url: http://chicken.ninja/scripts/gitconfig
     dest: /home/sean/.gitconfig
 
-- name: get zsh config
-  get_url:
-    url: http://chicken.ninja/scripts/zshrc
-    dest: /home/sean/.zshrc
-
 - name: clone chicken ninja repo
   git:
     repo: https://github.com/chickenninja/chickenninja.github.io.git 
@@ -94,6 +89,13 @@
   shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
   args:
     creates: /home/sean/.oh-my-zsh
+  become: yes
+  become_method: sudo
+
+- name: get zsh config
+  get_url:
+    url: http://chicken.ninja/scripts/zshrc
+    dest: /home/sean/.zshrc
 
 - name: set default shell
   shell: chsh -s /bin/zsh sean
