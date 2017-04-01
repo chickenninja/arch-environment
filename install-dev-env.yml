@@ -4,8 +4,7 @@
   remote_user: sean
   roles:
     - core
-  become: true
-  become_method: sudo
+    - lastpass
   tags:
     - core
     - lastpass
@@ -15,8 +14,6 @@
   remote_user: sean
   roles:
     - ff1
-  become: true
-  become_method: sudo
   tags:
     - dev
 
@@ -25,8 +22,6 @@
   remote_user: sean
   roles:
     - entertainment
-  become: true
-  become_method: sudo
   tags:
     - fun
 

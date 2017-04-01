@@ -95,8 +95,6 @@
   shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
   args:
     creates: /home/sean/.oh-my-zsh
-  become: yes
-  become_method: sudo
 
 - name: get zsh config
   get_url:
