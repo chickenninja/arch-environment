@@ -1,8 +1,32 @@
 ---
-- name: Install a full environment on a local arch installation
+- name: Install core packages
   hosts: local
   remote_user: sean
-
-  
   roles:
     - core
+  become: true
+  become_method: sudo
+  tags:
+    - core
+    - lastpass
+
+- name: Install development projects
+  hosts: local
+  remote_user: sean
+  roles:
+    - ff1
+  become: true
+  become_method: sudo
+  tags:
+    - dev
+
+- name: Install fun stuff
+  hosts: local
+  remote_user: sean
+  roles:
+    - entertainment
+  become: true
+  become_method: sudo
+  tags:
+    - fun
+

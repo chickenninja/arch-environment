@@ -1,0 +1,22 @@
+---
+# install lastpass 
+
+- name: ensure dependencies are installed
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  become_method: sudo
+  with_items:
+    - base-devel
+    - cmake
+
+- name: clone lastpass repo
+  git:
+    repo: https://github.com/lastpass/lastpass-cli.git
+    dest: /home/sean/lastpass-repo
+
+- name: install lastpass
+  shell: cd /home/sean/lastpass-rpo && cmake && make && make install
+    args:
+      creates: /usr/local/bin/lpass

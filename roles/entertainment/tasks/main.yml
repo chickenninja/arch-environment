@@ -1,0 +1,13 @@
+---
+# Fun stuff
+
+- name: install items from pacman
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  become_method: sudo
+  with_items:
+    - nethack
+    - dwarffortress
+    - kodi

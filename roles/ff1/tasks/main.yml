@@ -1,0 +1,43 @@
+---
+# FF1 Project
+#
+
+- name: clone FF1 docs
+  git:
+    repo: https://github.com/chickenninja/ff1-docs.wiki.git
+    dest: /home/sean/ff1/wiki
+
+- name: clone FF1 app
+  git:
+    repo: https://github.com/chickenninja/ff1-app-v1.git
+    dest: /home/sean/ff1/app
+
+- name: clone FF1 api
+  git:
+    repo: https://github.com/chickenninja/ff1-api-mgmt-v1.git
+    dest: /home/sean/ff1/api
+
+- name: clone IdentitSean
+  git:
+    repo: https://github.com/chickenninja/identisean-svc-v1.git
+    dest: /home/sean/ff1/identity-svc
+
+- name: clone prediction service
+  git: 
+    repo: https://github.com/chickenninja/ff1-prediction-svc-v1.git
+    dest: /home/sean/ff1/prediction-svc
+
+- name: clone ff1 web
+  git: 
+    repo: https://github.com/chickenninja/ff1-web-v1.git
+    dest: /home/sean/ff1/web
+
+- name: clone identisean web
+  git: 
+    repo: https://github.com/chickenninja/identisean-web-v1.git
+    dest: /home/sean/ff1/identity-web
+
+- name: clone E2E tests
+  git:
+    repo: https://github.com/chickenninja/ff1-e2e-tests.git
+    dest: /home/sean/ff1/e2e-tests
