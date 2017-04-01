@@ -53,6 +53,8 @@
   shell: echo "qutebrowser --backend webengine" > /usr/bin/sd-web && chmod 777 /usr/bin/sd-web
   args:
     creates: /usr/bin/sd-web
+  become: yes
+  become_method: sudo
 
 - name: get vimrc
   get_url:
@@ -91,15 +93,17 @@
     repo: https://github.com/chickenninja/chickenninja.github.io.git 
     dest: /home/sean/chickenninja
 
-- name: install oh my zsh
-  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-  args:
-    creates: /home/sean/.oh-my-zsh
-
 - name: get zsh config
   get_url:
     url: http://chicken.ninja/scripts/zshrc
     dest: /home/sean/.zshrc
+
+- name: install oh my zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+  args:
+    creates: /home/sean/.oh-my-zsh
+  become: yes
+  become_method: sudo
 
 - name: set default shell
   shell: chsh -s /bin/zsh sean

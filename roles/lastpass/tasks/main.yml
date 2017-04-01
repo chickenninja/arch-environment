@@ -15,8 +15,16 @@
   git:
     repo: https://github.com/lastpass/lastpass-cli.git
     dest: /home/sean/lastpass-repo
+  ignore_errors: true
 
 - name: install lastpass
-  shell: cd /home/sean/lastpass-rpo && cmake && make && make install
-    args:
-      creates: /usr/local/bin/lpass
+  shell: cd /home/sean/lastpass-repo && cmake . && make 
+  args:
+    creates: /home/sean/lastpass-repo/cmake_install.cmake
+
+- name: install lastpass 
+  shell: cd /home/sean/lastpass-repo && make install 
+  args:
+    creates: /usr/local/bin/lpass
+  become: yes
+  become_method: sudo
