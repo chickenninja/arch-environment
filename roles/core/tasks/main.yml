@@ -93,11 +93,6 @@
     repo: https://github.com/chickenninja/chickenninja.github.io.git 
     dest: /home/sean/chickenninja
 
-- name: install oh my zsh
-  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-  args:
-    creates: /home/sean/.oh-my-zsh
-
 - name: get zsh config
   get_url:
     url: http://chicken.ninja/scripts/zshrc
@@ -108,3 +103,8 @@
   shell: chsh -s /bin/zsh sean
   become: yes
   become_method: sudo
+
+- name: install oh my zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+  args:
+    creates: /home/sean/.oh-my-zsh
